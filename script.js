@@ -45,7 +45,9 @@ loginForm.addEventListener("submit", function(event) {
 const nextButton = document.getElementById("nextButton");
 const card1 = document.getElementById("surprise-screen");
 const card2 = document.getElementById("card-2-screen"); 
-const heartContainer = document.querySelector(".heart-container"); // เพิ่มบรรทัดนี้
+const heartContainer = document.querySelector(".heart-container"); 
+// *** เพิ่มบรรทัดนี้ครับ: ***
+const countdownContainer = document.getElementById("countdown-container");
 
 nextButton.addEventListener("click", function() {
     
@@ -53,9 +55,13 @@ nextButton.addEventListener("click", function() {
     card1.style.display = "none";
     card2.style.display = "block";
     
-    // --- เพิ่มบรรทัดนี้ เพื่อสั่งให้หัวใจปรากฏ ---
+    // *** เพิ่มบรรทัดนี้ครับ: ***
+    countdownContainer.style.display = "block"; // แสดงกล่องตัวนับ!
+
     createHearts(); 
     
+    // *** เพิ่มบรรทัดนี้ครับ: ***
+    startTimer(); // สั่งให้เริ่มนับเวลา!
 });
 
 // --- (เพิ่มใหม่) ฟังก์ชันสำหรับสร้างหัวใจ ---
@@ -85,4 +91,44 @@ function createHearts() {
             heart.remove();
         });
     }
+}
+
+// --- (เพิ่มใหม่) ส่วนที่ 3: ฟังก์ชันนับเวลา ---
+
+function startTimer() {
+    
+    // *** ตั้งค่าวันครบรอบของคุณตรงนี้ ***
+    // (ปี, เดือน-1, วัน, ชั่วโมง, นาที, วินาที)
+    // "8-11-2020" คือ เดือน 11 (November) วันที่ 8 ปี 2020
+    const anniversaryDate = new Date(2020, 10, 8, 0, 0, 0); // (เดือน 10 คือ พฤศจิกายน)
+
+    // หา element ที่จะแสดงผล
+    const timeDays = document.getElementById("time-days");
+    const timeHours = document.getElementById("time-hours");
+    const timeMinutes = document.getElementById("time-minutes");
+    const timeSeconds = document.getElementById("time-seconds");
+
+    // สร้างฟังก์ชันที่จะทำงานทุกวินาที
+    function updateTimer() {
+        const now = new Date();
+        const diff = now - anniversaryDate; // ผลต่างเป็นมิลลิวินาที
+
+        // คำนวณ
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // นำไปแสดงผล (เพิ่ม '0' ข้างหน้าถ้าเลขน้อยกว่า 10)
+        timeDays.textContent = days;
+        timeHours.textContent = hours < 10 ? '0' + hours : hours;
+        timeMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+        timeSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+    }
+
+    // เรียกใช้ครั้งแรกทันที (จะได้ไม่เห็นเลข 0)
+    updateTimer(); 
+    
+    // สั่งให้มันทำงานทุกๆ 1 วินาที (1000ms)
+    setInterval(updateTimer, 1000);
 }

@@ -91,7 +91,8 @@ button:hover {
 }
 
 /* --- คำสั่งสำคัญ: ซ่อนหน้าเซอร์ไพรส์ไว้ตอนเริ่ม! --- */
-#surprise-screen, #card-2-screen {
+/* --- คำสั่งสำคัญ: ซ่อนหน้าเซอร์ไพรส์ไว้ตอนเริ่ม! --- */
+#surprise-screen, #card-2-screen, #countdown-container {
     display: none;
 }
 
@@ -154,4 +155,47 @@ button:hover {
         opacity: 0; /* หายไปเมื่อลอยสุด */
         bottom: 100%; /* ลอยขึ้นไปด้านบนสุด */
     }
+}
+
+/* --- (เพิ่มใหม่) สไตล์ตัวนับเวลา --- */
+#countdown-container {
+    color: white; /* ตัวอักษรสีขาว (เพื่อให้ตัดกับพื้นหลังสีชมพู) */
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ตัวอักษร */
+}
+
+#countdown-container h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #444; /* เปลี่ยนเป็นสีเข้ม ให้อ่านง่ายบนพื้นชมพู */
+}
+
+.time-blocks {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* ระยะห่างระหว่างกล่อง */
+}
+
+.time-blocks .block {
+    background: rgba(255, 255, 255, 0.2); /* พื้นหลังโปร่งแสง */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 90px;
+}
+
+/* ตัวเลขตัวใหญ่ */
+.time-blocks .block span {
+    font-size: 2.5em; /* เพิ่มขนาดตัวเลข */
+    font-weight: bold;
+    display: block;
+    color: #333; /* สีตัวเลขเข้ม */
+}
+
+/* ตัวอักษร (Days, Hours, ...) */
+.time-blocks .block p {
+    font-size: 0.9em;
+    margin: 0;
+    color: #555; /* สีตัวอักษรเข้ม */
 }
