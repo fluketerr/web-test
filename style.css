@@ -23,7 +23,7 @@ body {
 
 /* --- สไตล์หน้าล็อกอิน --- */
 #login-screen h2 {
-    color: #d81b60;
+    color: #555555;
 }
 
 .input-group {
@@ -65,7 +65,7 @@ body {
 
 /* --- สไตล์ปุ่ม (ใช้ร่วมกัน) --- */
 button {
-    background-color: #d81b60;
+    background-color: #555;
     color: white;
     border: none;
     padding: 15px 30px;
@@ -78,7 +78,7 @@ button {
 }
 
 button:hover {
-    background-color: #ad1457;
+    background-color: #333;
 }
 
 /* --- คำสั่งสำคัญ: ซ่อนหน้าเซอร์ไพรส์ไว้ตอนเริ่ม! --- */
