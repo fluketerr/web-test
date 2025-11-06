@@ -1,12 +1,13 @@
 /* --- การตั้งค่าพื้นฐาน --- */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fce4ec; /* สีพื้นหลังชมพูอ่อน */
+    background-color: #222222; /* <-- เปลี่ยนเป็นสีเทาเข้ม (โทนมืด) */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    transition: background-color 0.5s ease; /* <-- (แนะนำ) เพิ่มอนิเมชั่นตอนเปลี่ยนสี */
 }
 
 /* --- สไตล์การ์ดหลัก (ใช้ร่วมกัน) --- */

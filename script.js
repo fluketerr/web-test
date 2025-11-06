@@ -28,6 +28,10 @@ loginForm.addEventListener("submit", function(event) {
         console.log("ล็อกอินสำเร็จ!");
         loginScreen.style.display = "none";     // ซ่อนหน้าล็อกอิน
         surpriseScreen.style.display = "block"; // แสดงหน้าเซอร์ไพรส์!
+        
+        // --- เพิ่มบรรทัดนี้ครับ! ---
+        document.body.style.backgroundColor = "#fce4ec"; // เปลี่ยนพื้นหลังกลับเป็นสีชมพู!
+        
     } else {
         // ถ้าผิด!
         console.log("รหัสผ่านผิด!");
