@@ -3,12 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our 5 Years!</title>
+    <title>Surprise Login!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="card">
+    <div class="card" id="login-screen">
+        <h2>🔒 Please Login</h2>
+        <p>กรอกรหัสผ่านแห่งรักของเรา!</p>
+        
+        <form id="login-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="เช่น ชื่อเล่นของคุณ">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="เช่น วันครบรอบ (DDMMYYYY)">
+            </div>
+            
+            <button type="submit" id="loginButton">Login</button>
+            
+            <p id="errorMessage"></p>
+        </form>
+    </div>
+
+    <div class="card" id="surprise-screen">
         <h1>Happy 5th Anniversary! ❤️</h1>
         <p>ถึง... (ชื่อแฟนของคุณ)</p>
         
