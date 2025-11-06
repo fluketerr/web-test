@@ -3,28 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"Welcome Login"</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Welcome</title> <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="card" id="login-screen">
         <h2>🔒 Please Login</h2>
-        <p>กรอกรหัสผ่านแห่งรักของเรา!</p>
+        <p>กรอกรหัสผ่านเพื่อล็อคอิน!</p>
         
         <form id="login-form">
             <div class="input-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" placeholder="เช่น ชื่อเล่นของคุณ">
+                <input type="text" id="username" placeholder="username">
             </div>
             
             <div class="input-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="เช่น วันครบรอบ (DDMMYYYY)">
+                <input type="password" id="password" placeholder="password">
             </div>
             
             <button type="submit" id="loginButton">Login</button>
-            
             <p id="errorMessage"></p>
         </form>
     </div>
@@ -34,10 +32,28 @@
         <p>ถึง... (ชื่อแฟนของคุณ)</p>
         
         <p>ขอบคุณที่อยู่ด้วยกันมา 5 ปีนะ</p>
-        <p>มีอะไรจะบอก...</p>
+        <p>มีอะไรจะบอกอีก...</p>
         
-        <button id="surpriseButton">กดสิ!</button>
+        <button id="nextButton">อ่านต่อสิ</button>
     </div>
+
+    <div class="card" id="card-2-screen">
+        <h2>ข้อความจากใจ 💌</h2>
+        
+        <p>
+            (ตรงนี้คุณสามารถเขียนข้อความยาวๆ ซึ้งๆ ได้เลยครับ)
+            เช่น... ตลอด 5 ปีที่ผ่านมา...
+            ขอบคุณสำหรับทุกอย่าง...
+        </p>
+        <p>
+            (จะใส่ย่อหน้าเพิ่มอีกเท่าไหร่ก็ได้ครับ)
+        </p>
+        <p>
+            รักนะ
+        </p>
+        
+        </div>
+
 
     <script src="script.js"></script>
 </body>

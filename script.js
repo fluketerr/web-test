@@ -40,10 +40,21 @@ loginForm.addEventListener("submit", function(event) {
 });
 
 
-// --- ส่วนที่ 2: ตรรกะปุ่มเซอร์ไพรส์ (เหมือนเดิม) ---
-// (โค้ดนี้ยังทำงานได้ แม้ว่าจะถูกซ่อนไว้ตอนแรก)
-const surpriseBtn = document.getElementById("surpriseButton");
+// --- ส่วนที่ 2: ตรรกะปุ่มเซอร์ไพรส์ (เขียนใหม่ทั้งหมด) ---
+// (โค้ดนี้จะทำงานหลังจากล็อกอินสำเร็จ)
 
-surpriseBtn.addEventListener("click", function() {
-    alert("รักนะครับ! ❤️");
+// 1. หาองค์ประกอบที่ต้องใช้
+const nextButton = document.getElementById("nextButton"); // ปุ่ม "อ่านต่อ"
+const card1 = document.getElementById("surprise-screen"); // การ์ดใบแรก
+const card2 = document.getElementById("card-2-screen");   // การ์ดใบที่สอง
+
+// 2. ดักฟังเหตุการณ์เมื่อคลิกปุ่ม "อ่านต่อ"
+nextButton.addEventListener("click", function() {
+    
+    // 3. สลับการ์ด
+    console.log("กำลังเปิดหน้าต่อไป...");
+    card1.style.display = "none";  // ซ่อนการ์ดใบแรก
+    card2.style.display = "block"; // แสดงการ์ดใบที่สอง!
+    
+    // ไม่ต้องมี alert แล้ว
 });

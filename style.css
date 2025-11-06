@@ -65,7 +65,7 @@ body {
 
 /* --- สไตล์ปุ่ม (ใช้ร่วมกัน) --- */
 button {
-    background-color: #555;
+    background-color: #d81b60; /* <-- กลับเป็นสีชมพูหลัก */
     color: white;
     border: none;
     padding: 15px 30px;
@@ -73,15 +73,24 @@ button {
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%; /* ทำให้ปุ่มเต็มความกว้าง */
+    width: 100%; 
     margin-top: 10px;
 }
 
 button:hover {
-    background-color: #333;
+    background-color: #ad1457; /* <-- สีชมพูเข้มขึ้น */
+}
+
+/* --- (เพิ่มใหม่) สไตล์ปุ่มล็อกอินสีเทา --- */
+#loginButton {
+    background-color: #555; /* สีเทา */
+}
+
+#loginButton:hover {
+    background-color: #333; /* สีเทาเข้ม */
 }
 
 /* --- คำสั่งสำคัญ: ซ่อนหน้าเซอร์ไพรส์ไว้ตอนเริ่ม! --- */
-#surprise-screen {
+#surprise-screen, #card-2-screen {
     display: none;
 }
