@@ -40,21 +40,49 @@ loginForm.addEventListener("submit", function(event) {
 });
 
 
-// --- ส่วนที่ 2: ตรรกะปุ่มเซอร์ไพรส์ (เขียนใหม่ทั้งหมด) ---
-// (โค้ดนี้จะทำงานหลังจากล็อกอินสำเร็จ)
+// --- ส่วนที่ 2: ตรรกะปุ่มเซอร์ไพรส์ ---
 
-// 1. หาองค์ประกอบที่ต้องใช้
-const nextButton = document.getElementById("nextButton"); // ปุ่ม "อ่านต่อ"
-const card1 = document.getElementById("surprise-screen"); // การ์ดใบแรก
-const card2 = document.getElementById("card-2-screen");   // การ์ดใบที่สอง
+const nextButton = document.getElementById("nextButton");
+const card1 = document.getElementById("surprise-screen");
+const card2 = document.getElementById("card-2-screen"); 
+const heartContainer = document.querySelector(".heart-container"); // เพิ่มบรรทัดนี้
 
-// 2. ดักฟังเหตุการณ์เมื่อคลิกปุ่ม "อ่านต่อ"
 nextButton.addEventListener("click", function() {
     
-    // 3. สลับการ์ด
     console.log("กำลังเปิดหน้าต่อไป...");
-    card1.style.display = "none";  // ซ่อนการ์ดใบแรก
-    card2.style.display = "block"; // แสดงการ์ดใบที่สอง!
+    card1.style.display = "none";
+    card2.style.display = "block";
     
-    // ไม่ต้องมี alert แล้ว
+    // --- เพิ่มบรรทัดนี้ เพื่อสั่งให้หัวใจปรากฏ ---
+    createHearts(); 
+    
 });
+
+// --- (เพิ่มใหม่) ฟังก์ชันสำหรับสร้างหัวใจ ---
+function createHearts() {
+    const numHearts = 15; // จำนวนหัวใจที่ต้องการให้ลอย
+    for (let i = 0; i < numHearts; i++) {
+        const heart = document.createElement("div"); // สร้าง div สำหรับหัวใจ
+        heart.classList.add("heart"); // ใส่ class "heart" เพื่อให้มีสไตล์
+        
+        // กำหนดตำแหน่งเริ่มต้นแบบสุ่ม (มาจากด้านล่างของจอ)
+        heart.style.left = Math.random() * 100 + "vw"; // ตำแหน่งแนวนอน 0-100%
+        heart.style.bottom = "-10px"; // เริ่มต้นใต้จอเล็กน้อย
+        
+        // กำหนดขนาดสุ่ม
+        const size = Math.random() * 20 + 20; // ขนาด 20px ถึง 40px
+        heart.style.width = size + "px";
+        heart.style.height = size + "px";
+
+        // กำหนดความเร็ว/ระยะเวลาอนิเมชั่นสุ่มเล็กน้อย
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s"; // 4-7 วินาที
+        heart.style.animationDelay = Math.random() * 0.5 + "s"; // หน่วงเวลาเล็กน้อย
+        
+        heartContainer.appendChild(heart); // เพิ่มหัวใจเข้าไปใน container
+        
+        // ลบหัวใจออกเมื่ออนิเมชั่นจบ เพื่อไม่ให้ค้างใน DOM
+        heart.addEventListener('animationend', () => {
+            heart.remove();
+        });
+    }
+}

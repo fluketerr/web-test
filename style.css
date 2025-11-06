@@ -94,3 +94,64 @@ button:hover {
 #surprise-screen, #card-2-screen {
     display: none;
 }
+
+/* --- เอฟเฟกต์หัวใจลอย --- */
+
+/* กำหนดพื้นที่ให้หัวใจลอย */
+.heart-container {
+    position: fixed; /* ให้อยู่บนสุดของหน้าจอ */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* ทำให้คลิกผ่านได้ ไม่บังหน้าเว็บ */
+    overflow: hidden; /* ซ่อนหัวใจที่เลยขอบไปแล้ว */
+    z-index: 9999; /* ให้หัวใจอยู่บนสุด */
+}
+
+/* สร้างหัวใจด้วย CSS */
+.heart {
+    position: absolute;
+    background-color: #ff69b4; /* สีชมพูฮอตพิงค์ */
+    transform: rotate(-45deg); /* หมุนให้เป็นรูปหัวใจ */
+    animation: floatUp 4s ease-out forwards; /* อนิเมชั่นการลอย */
+    opacity: 0; /* ซ่อนไว้ตอนแรก */
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ff69b4;
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+}
+
+.heart:before {
+    top: -50%;
+    left: 0;
+}
+
+.heart:after {
+    left: 50%;
+    top: 0;
+}
+
+/* Keyframes สำหรับอนิเมชั่นการลอย */
+@keyframes floatUp {
+    0% {
+        transform: translate(-50%, 0) rotate(-45deg) scale(0);
+        opacity: 0;
+        bottom: 0; /* เริ่มต้นจากด้านล่าง */
+    }
+    10% {
+        opacity: 1; /* ปรากฏขึ้น */
+        transform: translate(-50%, 0) rotate(-45deg) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -100vh) rotate(-45deg) scale(1.2);
+        opacity: 0; /* หายไปเมื่อลอยสุด */
+        bottom: 100%; /* ลอยขึ้นไปด้านบนสุด */
+    }
+}
