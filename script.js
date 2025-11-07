@@ -13,6 +13,7 @@ const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const errorMessage = document.getElementById("errorMessage");
 const loadingScreen = document.getElementById("loading-screen");
+const confettiContainer = document.querySelector(".confetti-container"); // <<< (เพิ่ม)
 
 // 2. ดักฟังเหตุการณ์เมื่อ "ฟอร์ม" ถูก "ส่ง" (กดยืนยัน)
 loginForm.addEventListener("submit", function(event) {
@@ -38,6 +39,7 @@ loginForm.addEventListener("submit", function(event) {
             loadingScreen.style.display = "none";     // 4a. ซ่อนหน้าโหลด
             surpriseScreen.style.display = "block"; // 4b. แสดงหน้าเซอร์ไพรส์!
             surpriseScreen.classList.add('animate-in'); // <<< เพิ่มอนิเมชั่น
+            createConfetti(); // <<< (เพิ่ม) เรียกใช้พลุ!
             document.body.style.backgroundColor = "#fce4ec"; // 4c. เปลี่ยนสีพื้นหลัง
 
         }, 2500); // <-- ตัวเลขตรงนี้คือ มิลลิวินาที (2500 = 2.5 วินาที)
@@ -141,4 +143,41 @@ function startTimer() {
     
     // สั่งให้มันทำงานทุกๆ 1 วินาที (1000ms)
     setInterval(updateTimer, 1000);
+}
+
+// --- (เพิ่มใหม่) ฟังก์ชันสำหรับสร้างพลุกระดาษ (Confetti) ---
+function createConfetti() {
+    const numConfetti = 50; // จำนวนชิ้นพลุ
+    const colors = ['#d81b60', '#ff69b4', '#ff8dc7', '#ffb3d9']; // โทนสีชมพู
+
+    for (let i = 0; i < numConfetti; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        // สุ่มสี
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        // สุ่มตำแหน่งเริ่มต้นด้านบน
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = -Math.random() * 50 + 'px'; // เริ่มจากนอกจอด้านบน
+
+        // สุ่มขนาด (เล็ก/ใหญ่)
+        const size = Math.random() * 8 + 6; // 6px ถึง 14px
+        confetti.style.width = size + 'px';
+        confetti.style.height = size + 'px';
+        
+        // สุ่มรูปร่าง (สี่เหลี่ยม/วงกลม)
+        confetti.style.borderRadius = Math.random() < 0.5 ? '50%' : '2px';
+
+        // สุ่มความหน่วงอนิเมชั่นและระยะเวลา
+        confetti.style.animationDelay = Math.random() * 1.5 + 's';
+        confetti.style.animationDuration = (Math.random() * 2 + 2.5) + 's'; // 2.5-4.5 วินาที
+
+        confettiContainer.appendChild(confetti);
+
+        // ลบพลุออกเมื่ออนิเมชั่นจบ
+        confetti.addEventListener('animationend', () => {
+            confetti.remove();
+        });
+    }
 }
