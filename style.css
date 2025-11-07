@@ -272,3 +272,46 @@ button:hover {
         font-size: 2em;
     }
 }
+
+/* --- (สำคัญ) โค้ดสำหรับจอมือถือ --- */
+@media (max-width: 600px) {
+
+    /* 1. สั่งให้กล่องเวลานับถอยหลังเรียงเป็นแนวตั้ง */
+    .time-blocks {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* 2. ทำให้การ์ดและตัวนับเต็มความกว้าง */
+    .card, #countdown-container {
+        width: calc(100% - 40px);
+        max-width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    /* 3. ทำให้กล่องเวลาแต่ละอันเต็มความกว้าง */
+    .time-blocks .block {
+        min-width: unset;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+    
+    /* 4. ลดขนาดตัวอักษรให้พอดีมือถือ */
+    #countdown-container h3 {
+        font-size: 1.3em;
+    }
+
+    .time-blocks .block span {
+        font-size: 2.2em;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+}
