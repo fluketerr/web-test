@@ -12,6 +12,7 @@ const loginForm = document.getElementById("login-form");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const errorMessage = document.getElementById("errorMessage");
+const loadingScreen = document.getElementById("loading-screen");
 
 // 2. ดักฟังเหตุการณ์เมื่อ "ฟอร์ม" ถูก "ส่ง" (กดยืนยัน)
 loginForm.addEventListener("submit", function(event) {
@@ -25,12 +26,21 @@ loginForm.addEventListener("submit", function(event) {
     // 4. ตรวจสอบว่าถูกต้องหรือไม่
     if (enteredUsername === CORRECT_USERNAME && enteredPassword === CORRECT_PASSWORD) {
         // ถ้าถูกต้อง!
-        console.log("ล็อกอินสำเร็จ!");
-        loginScreen.style.display = "none";     // ซ่อนหน้าล็อกอิน
-        surpriseScreen.style.display = "block"; // แสดงหน้าเซอร์ไพรส์!
-        
-        // --- เพิ่มบรรทัดนี้ครับ! ---
-        document.body.style.backgroundColor = "#fce4ec"; // เปลี่ยนพื้นหลังกลับเป็นสีชมพู!
+        console.log("ล็อกอินสำเร็จ! กำลังแสดงหน้าโหลด...");
+        loginScreen.style.display = "none";     // 1. ซ่อนหน้าล็อกอิน
+        loadingScreen.style.display = "flex";   // 2. แสดงหน้าโหลด (ใช้ 'flex' เพราะเราตั้งค่าไว้ใน CSS)
+
+        // 3. ตั้งเวลาหน่วง (เช่น 2.5 วินาที) ก่อนไปหน้าต่อไป
+        setTimeout(function() {
+
+            // 4. สิ่งที่จะเกิดขึ้นหลังหน่วงเวลา
+            console.log("หน่วงเวลาเสร็จแล้ว! แสดงเซอร์ไพรส์");
+            loadingScreen.style.display = "none";     // 4a. ซ่อนหน้าโหลด
+            surpriseScreen.style.display = "block"; // 4b. แสดงหน้าเซอร์ไพรส์!
+            document.body.style.backgroundColor = "#fce4ec"; // 4c. เปลี่ยนสีพื้นหลัง
+
+        }, 2500); // <-- ตัวเลขตรงนี้คือ มิลลิวินาที (2500 = 2.5 วินาที)
+                // คุณสามารถปรับเลขได้ตามชอบเลยครับ
         
     } else {
         // ถ้าผิด!
