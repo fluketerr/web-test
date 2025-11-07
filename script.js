@@ -37,10 +37,11 @@ loginForm.addEventListener("submit", function(event) {
             console.log("หน่วงเวลาเสร็จแล้ว! แสดงเซอร์ไพรส์");
             loadingScreen.style.display = "none";     // 4a. ซ่อนหน้าโหลด
             surpriseScreen.style.display = "block"; // 4b. แสดงหน้าเซอร์ไพรส์!
+            surpriseScreen.classList.add('animate-in'); // <<< เพิ่มอนิเมชั่น
             document.body.style.backgroundColor = "#fce4ec"; // 4c. เปลี่ยนสีพื้นหลัง
 
         }, 2500); // <-- ตัวเลขตรงนี้คือ มิลลิวินาที (2500 = 2.5 วินาที)
-                // คุณสามารถปรับเลขได้ตามชอบเลยครับ
+                  // คุณสามารถปรับเลขได้ตามชอบเลยครับ
         
     } else {
         // ถ้าผิด!
@@ -56,7 +57,6 @@ const nextButton = document.getElementById("nextButton");
 const card1 = document.getElementById("surprise-screen");
 const card2 = document.getElementById("card-2-screen"); 
 const heartContainer = document.querySelector(".heart-container"); 
-// *** เพิ่มบรรทัดนี้ครับ: ***
 const countdownContainer = document.getElementById("countdown-container");
 
 nextButton.addEventListener("click", function() {
@@ -64,13 +64,13 @@ nextButton.addEventListener("click", function() {
     console.log("กำลังเปิดหน้าต่อไป...");
     card1.style.display = "none";
     card2.style.display = "block";
-    
-    // *** เพิ่มบรรทัดนี้ครับ: ***
+    card2.classList.add('animate-in'); // <<< เพิ่มอนิเมชั่น
+
     countdownContainer.style.display = "block"; // แสดงกล่องตัวนับ!
+    countdownContainer.classList.add('animate-in'); // <<< เพิ่มอนิเมชั่น
 
     createHearts(); 
     
-    // *** เพิ่มบรรทัดนี้ครับ: ***
     startTimer(); // สั่งให้เริ่มนับเวลา!
 });
 
