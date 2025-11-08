@@ -28,29 +28,25 @@ body {
 #login-screen h2 {
     color: #555555;
 }
-
 .input-group {
     text-align: left;
     margin-bottom: 20px;
 }
-
 .input-group label {
     display: block;
     margin-bottom: 5px;
     color: #555;
     font-weight: bold;
 }
-
 .input-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    box-sizing: border-box; /* ทำให้ padding ไม่ล้น */
+    box-sizing: border-box;
 }
-
 #errorMessage {
-    color: red; /* สีแดงแจ้งเตือน */
+    color: red;
     font-size: 0.9em;
     margin-top: 15px;
 }
@@ -59,7 +55,6 @@ body {
 #surprise-screen h1 {
     color: #d81b60;
 }
-
 #surprise-screen p {
     font-size: 1.1em;
     color: #555;
@@ -68,7 +63,7 @@ body {
 
 /* --- สไตล์ปุ่ม (ใช้ร่วมกัน) --- */
 button {
-    background-color: #d81b60; /* <-- กลับเป็นสีชมพูหลัก */
+    background-color: #d81b60;
     color: white;
     border: none;
     padding: 15px 30px;
@@ -79,64 +74,56 @@ button {
     width: 100%; 
     margin-top: 10px;
 }
-
 button:hover {
-    background-color: #ad1457; /* <-- สีชมพูเข้มขึ้น */
+    background-color: #ad1457;
 }
 
-/* --- (เพิ่มใหม่) สไตล์ปุ่มล็อกอินสีเทา --- */
+/* --- สไตล์ปุ่มล็อกอินสีเทา --- */
 #loginButton {
-    background-color: #555; /* สีเทา */
+    background-color: #555;
 }
-
 #loginButton:hover {
-    background-color: #333; /* สีเทาเข้ม */
+    background-color: #333;
 }
 
 /* --- คำสั่งสำคัญ: ซ่อนหน้าเซอร์ไพรส์ไว้ตอนเริ่ม! --- */
-#surprise-screen, #card-2-screen, #countdown-container, #loading-screen {
+#surprise-screen, #card-2-screen, #countdown-container, #loading-screen, #envelope {
     display: none;
 }
 
-/* --- (เพิ่มใหม่) สไตล์หน้าโหลด --- */
+/* --- สไตล์หน้าโหลด --- */
 #loading-screen {
-    /* สั่งให้ "ตัวหมุน" และ "ข้อความ" อยู่กลางจอ */
-    display: none; /* <-- สำคัญมาก! ต้องซ่อนไว้ก่อน */
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 .loader-spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid #f3f3f3; /* สีเทาอ่อน */
-    border-top: 6px solid #d81b60; /* สีชมพู */
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #d81b60;
     border-radius: 50%;
-    animation: spin 1s linear infinite; /* สั่งให้หมุน */
+    animation: spin 1s linear infinite;
 }
-
-/* สร้างอนิเมชั่น "spin" ที่เราเรียกใช้ด้านบน */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* --- (เพิ่มใหม่) Keyframes สำหรับอนิเมชั่นการ์ดปรากฏ --- */
+/* --- Keyframes สำหรับอนิเมชั่นการ์ดปรากฏ --- */
 @keyframes fadeInSlideUp {
     0% {
-        opacity: 0; /* ซ่อนไว้ */
-        transform: translateY(20px); /* เลื่อนลงไปข้างล่าง 20px */
+        opacity: 0;
+        transform: translateY(20px);
     }
     100% {
-        opacity: 1; /* ปรากฏขึ้น */
-        transform: translateY(0); /* กลับมาตำแหน่งเดิม */
+        opacity: 1;
+        transform: translateY(0);
     }
 }
-
-/* --- (เพิ่มใหม่) คลาสสำหรับเรียกใช้อนิเมชั่น --- */
 .animate-in {
-    animation: fadeInSlideUp 0.7s ease-out forwards; /* เล่นอนิเมชั่น 0.7 วินาที */
+    animation: fadeInSlideUp 0.7s ease-out forwards;
 }
 
 
@@ -151,7 +138,6 @@ button:hover {
     overflow: hidden;
     z-index: 9999;
 }
-
 .heart {
     position: absolute;
     background-color: #ff69b4;
@@ -159,7 +145,6 @@ button:hover {
     animation: floatUp 4s ease-out forwards;
     opacity: 0;
 }
-
 .heart:before,
 .heart:after {
     content: "";
@@ -169,17 +154,14 @@ button:hover {
     background-color: #ff69b4;
     border-radius: 50%;
 }
-
 .heart:before {
     top: -50%;
     left: 0;
 }
-
 .heart:after {
     left: 50%;
     top: 0;
 }
-
 @keyframes floatUp {
     0% {
         transform: translate(-50%, 0) rotate(-45deg) scale(0);
@@ -197,65 +179,57 @@ button:hover {
     }
 }
 
-/* --- (เพิ่มใหม่) เอฟเฟกต์พลุกระดาษ (Confetti) --- */
-
+/* --- เอฟเฟกต์พลุกระดาษ (Confetti) --- */
 .confetti-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* คลิกผ่านได้ */
+    pointer-events: none;
     overflow: hidden;
-    z-index: 9998; /* อยู่ใต้การ์ด แต่บนพื้นหลัง */
+    z-index: 9998;
 }
-
 .confetti {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #ff69b4; /* สีชมพู */
+    background-color: #ff69b4;
     opacity: 0;
     animation: fallAndFade 3s ease-out forwards;
 }
-
-/* Keyframes สำหรับอนิเมชั่นพลุกระดาษ */
 @keyframes fallAndFade {
     0% {
         opacity: 0;
-        transform: translateY(-50px) rotate(0deg); /* เริ่มจากบนจอ */
+        transform: translateY(-50px) rotate(0deg);
     }
     10% {
         opacity: 1;
-        transform: translateY(0px) rotate(90deg); /* ปรากฏ */
+        transform: translateY(0px) rotate(90deg);
     }
     100% {
         opacity: 0;
-        transform: translateY(100vh) rotate(720deg); /* ตกถึงล่างและหมุน */
+        transform: translateY(100vh) rotate(720deg);
     }
 }
 
-
-/* --- (เพิ่มใหม่) สไตล์ตัวนับเวลา --- */
+/* --- สไตล์ตัวนับเวลา --- */
 #countdown-container {
     color: white;
     text-align: center;
     margin-bottom: 20px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
-
 #countdown-container h3 {
     font-size: 1.5em;
     margin-bottom: 15px;
     color: #444;
 }
-
 .time-blocks {
     display: flex;
     justify-content: center;
     gap: 15px;
 }
-
 .time-blocks .block {
     background: rgba(255, 255, 255, 0.2);
     padding: 10px 20px;
@@ -263,94 +237,126 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     min-width: 90px;
 }
-
 .time-blocks .block span {
     font-size: 2.5em;
     font-weight: bold;
     display: block;
     color: #333;
 }
-
 .time-blocks .block p {
     font-size: 0.9em;
     margin: 0;
     color: #555;
 }
 
-/* --- (เพิ่มใหม่) โค้ดสำหรับจอมือถือ --- */
-
-@media (max-width: 600px) {
-
-    /* 1. สั่งให้กล่องเวลานับถอยหลังเรียงเป็นแนวตั้ง */
-    .time-blocks {
-        flex-direction: column; /* เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
-        gap: 10px; /* ลดระยะห่างลงเล็กน้อย */
-    }
-
-    /* 2. ทำให้การ์ดเต็มความกว้างจอมากขึ้น */
-    .card {
-        padding: 20px 25px; /* ลด padding ด้านข้าง */
-        width: 100%; /* ทำให้เต็มจอ (รวม padding ที่ body แล้ว) */
-    }
-
-    /* 3. ทำให้กล่องเวลาแต่ละอันเต็มความกว้าง */
-    .time-blocks .block {
-        min-width: unset; /* ลบความกว้างขั้นต่ำเดิม */
-        width: 100%; /* ทำให้เต็มความกว้าง */
-        box-sizing: border-box; /* สำคัญมาก! */
-        padding: 10px;
-    }
-    
-    /* 4. ลดขนาดตัวอักษรหัวข้อเวลานับ */
-    #countdown-container h3 {
-        font-size: 1.2em;
-    }
-
-    /* 5. ลดขนาดตัวเลขเวลานับ */
-    .time-blocks .block span {
-        font-size: 2em;
-    }
+/* --- (เพิ่มใหม่) สไตล์ซองจดหมาย --- */
+#envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+#envelope:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fce4ec; /* สีชมพูอ่อนมาก */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* ครึ่งบน */
+    background-color: #ffc1d6; /* สีชมพูเข้มกว่า */
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+    z-index: 3; /* อยู่บนสุด */
+    border-radius: 10px 10px 0 0;
+}
+.envelope-letter {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 60px;
+    color: #d81b60;
+    padding-top: 30px;
+    z-index: 2; /* อยู่ใต้ flap */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* --- (สำคัญ) โค้ดสำหรับจอมือถือ --- */
+/* --- โค้ดสำหรับจอมือถือ (ชุดที่ 1) --- */
 @media (max-width: 600px) {
-
-    /* 1. สั่งให้กล่องเวลานับถอยหลังเรียงเป็นแนวตั้ง */
     .time-blocks {
         flex-direction: column;
         gap: 10px;
     }
-
-    /* 2. ทำให้การ์ดและตัวนับเต็มความกว้าง */
-    .card, #countdown-container {
-        width: calc(100% - 40px);
-        max-width: 100%;
-        margin-left: 20px;
-        margin-right: 20px;
+    .card {
+        padding: 20px 25px;
+        width: 100%;
     }
-
-    /* 3. ทำให้กล่องเวลาแต่ละอันเต็มความกว้าง */
     .time-blocks .block {
         min-width: unset;
         width: 100%;
         box-sizing: border-box;
         padding: 10px;
     }
-    
-    /* 4. ลดขนาดตัวอักษรให้พอดีมือถือ */
+    #countdown-container h3 {
+        font-size: 1.2em;
+    }
+    .time-blocks .block span {
+        font-size: 2em;
+    }
+}
+
+/* --- โค้ดสำหรับจอมือถือ (ชุดที่ 2 - แก้ไขขอบจอ) --- */
+@media (max-width: 600px) {
+    .time-blocks {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .card, #countdown-container {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .time-blocks .block {
+        min-width: unset;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
     #countdown-container h3 {
         font-size: 1.3em;
     }
-
     .time-blocks .block span {
         font-size: 2.2em;
     }
-
     h1 {
         font-size: 1.8em;
     }
-
     h2 {
         font-size: 1.4em;
+    }
+    /* (เพิ่ม) ปรับขนาดซองจดหมายในมือถือ */
+    #envelope {
+        width: 90%;
+        max-width: 300px; /* ไม่ให้ใหญ่เกินไป */
     }
 }

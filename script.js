@@ -13,40 +13,31 @@ const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const errorMessage = document.getElementById("errorMessage");
 const loadingScreen = document.getElementById("loading-screen");
-const confettiContainer = document.querySelector(".confetti-container"); // <<< (เพิ่ม)
+const confettiContainer = document.querySelector(".confetti-container");
 
 // 2. ดักฟังเหตุการณ์เมื่อ "ฟอร์ม" ถูก "ส่ง" (กดยืนยัน)
 loginForm.addEventListener("submit", function(event) {
-    // ป้องกันไม่ให้หน้าเว็บรีโหลด (พฤติกรรมปกติของฟอร์ม)
     event.preventDefault(); 
     
-    // 3. ดึงค่าที่ผู้ใช้กรอก
     let enteredUsername = usernameInput.value;
     let enteredPassword = passwordInput.value;
     
-    // 4. ตรวจสอบว่าถูกต้องหรือไม่
     if (enteredUsername === CORRECT_USERNAME && enteredPassword === CORRECT_PASSWORD) {
-        // ถ้าถูกต้อง!
         console.log("ล็อกอินสำเร็จ! กำลังแสดงหน้าโหลด...");
-        loginScreen.style.display = "none";     // 1. ซ่อนหน้าล็อกอิน
-        loadingScreen.style.display = "flex";   // 2. แสดงหน้าโหลด (ใช้ 'flex' เพราะเราตั้งค่าไว้ใน CSS)
+        loginScreen.style.display = "none";
+        loadingScreen.style.display = "flex";
 
-        // 3. ตั้งเวลาหน่วง (เช่น 2.5 วินาที) ก่อนไปหน้าต่อไป
         setTimeout(function() {
-
-            // 4. สิ่งที่จะเกิดขึ้นหลังหน่วงเวลา
             console.log("หน่วงเวลาเสร็จแล้ว! แสดงเซอร์ไพรส์");
-            loadingScreen.style.display = "none";     // 4a. ซ่อนหน้าโหลด
-            surpriseScreen.style.display = "block"; // 4b. แสดงหน้าเซอร์ไพรส์!
-            surpriseScreen.classList.add('animate-in'); // <<< เพิ่มอนิเมชั่น
-            createConfetti(); // <<< (เพิ่ม) เรียกใช้พลุ!
-            document.body.style.backgroundColor = "#fce4ec"; // 4c. เปลี่ยนสีพื้นหลัง
+            loadingScreen.style.display = "none";
+            surpriseScreen.style.display = "block";
+            surpriseScreen.classList.add('animate-in');
+            createConfetti();
+            document.body.style.backgroundColor = "#fce4ec";
 
-        }, 2500); // <-- ตัวเลขตรงนี้คือ มิลลิวินาที (2500 = 2.5 วินาที)
-                  // คุณสามารถปรับเลขได้ตามชอบเลยครับ
+        }, 2500); 
         
     } else {
-        // ถ้าผิด!
         console.log("รหัสผ่านผิด!");
         errorMessage.textContent = "รหัสผ่านไม่ถูกน้า ลองอีกทีสิ!";
     }
@@ -60,122 +51,117 @@ const card1 = document.getElementById("surprise-screen");
 const card2 = document.getElementById("card-2-screen"); 
 const heartContainer = document.querySelector(".heart-container"); 
 const countdownContainer = document.getElementById("countdown-container");
+const envelope = document.getElementById("envelope"); // <<< (เพิ่มใหม่)
 
 nextButton.addEventListener("click", function() {
     
     console.log("กำลังเปิดหน้าต่อไป...");
     card1.style.display = "none";
-    card2.style.display = "block";
-    card2.classList.add('animate-in'); // <<< เพิ่มอนิเมชั่น
-
+    
+    // (*** นี่คือจุดที่แก้ไข ***)
+    // card2.style.display = "block"; // (ซ่อนไว้ก่อน)
+    // card2.classList.add('animate-in');
+    
+    envelope.style.display = "block"; // <<< (เพิ่มใหม่) แสดงซองจดหมาย
+    envelope.classList.add('animate-in'); // <<< (เพิ่มใหม่)
+    
     countdownContainer.style.display = "block"; // แสดงกล่องตัวนับ!
-    countdownContainer.classList.add('animate-in'); // <<< เพิ่มอนิเมชั่น
+    countdownContainer.classList.add('animate-in');
 
     createHearts(); 
-    
-    startTimer(); // สั่งให้เริ่มนับเวลา!
+    startTimer();
 });
 
-// --- (เพิ่มใหม่) ฟังก์ชันสำหรับสร้างหัวใจ ---
+// --- (เพิ่มใหม่) ตรรกะการคลิกซองจดหมาย ---
+envelope.addEventListener("click", function() {
+    console.log("กำลังเปิดจดหมาย...");
+    
+    // 1. ซ่อนซองจดหมาย
+    envelope.style.display = "none";
+    
+    // 2. แสดงการ์ดข้อความจริง
+    card2.style.display = "block";
+    card2.classList.add('animate-in'); // 3. เพิ่มอนิเมชั่น
+});
+
+
+// --- ฟังก์ชันสำหรับสร้างหัวใจ ---
 function createHearts() {
-    const numHearts = 15; // จำนวนหัวใจที่ต้องการให้ลอย
+    const numHearts = 15;
     for (let i = 0; i < numHearts; i++) {
-        const heart = document.createElement("div"); // สร้าง div สำหรับหัวใจ
-        heart.classList.add("heart"); // ใส่ class "heart" เพื่อให้มีสไตล์
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
         
-        // กำหนดตำแหน่งเริ่มต้นแบบสุ่ม (มาจากด้านล่างของจอ)
-        heart.style.left = Math.random() * 100 + "vw"; // ตำแหน่งแนวนอน 0-100%
-        heart.style.bottom = "-10px"; // เริ่มต้นใต้จอเล็กน้อย
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-10px";
         
-        // กำหนดขนาดสุ่ม
-        const size = Math.random() * 20 + 20; // ขนาด 20px ถึง 40px
+        const size = Math.random() * 20 + 20;
         heart.style.width = size + "px";
         heart.style.height = size + "px";
 
-        // กำหนดความเร็ว/ระยะเวลาอนิเมชั่นสุ่มเล็กน้อย
-        heart.style.animationDuration = Math.random() * 3 + 4 + "s"; // 4-7 วินาที
-        heart.style.animationDelay = Math.random() * 0.5 + "s"; // หน่วงเวลาเล็กน้อย
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        heart.style.animationDelay = Math.random() * 0.5 + "s";
         
-        heartContainer.appendChild(heart); // เพิ่มหัวใจเข้าไปใน container
+        heartContainer.appendChild(heart);
         
-        // ลบหัวใจออกเมื่ออนิเมชั่นจบ เพื่อไม่ให้ค้างใน DOM
         heart.addEventListener('animationend', () => {
             heart.remove();
         });
     }
 }
 
-// --- (เพิ่มใหม่) ส่วนที่ 3: ฟังก์ชันนับเวลา ---
-
+// --- ส่วนที่ 3: ฟังก์ชันนับเวลา ---
 function startTimer() {
     
     // *** ตั้งค่าวันครบรอบของคุณตรงนี้ ***
-    // (ปี, เดือน-1, วัน, ชั่วโมง, นาที, วินาที)
-    // "8-11-2020" คือ เดือน 11 (November) วันที่ 8 ปี 2020
     const anniversaryDate = new Date(2020, 10, 8, 0, 0, 0); // (เดือน 10 คือ พฤศจิกายน)
 
-    // หา element ที่จะแสดงผล
     const timeDays = document.getElementById("time-days");
     const timeHours = document.getElementById("time-hours");
     const timeMinutes = document.getElementById("time-minutes");
     const timeSeconds = document.getElementById("time-seconds");
 
-    // สร้างฟังก์ชันที่จะทำงานทุกวินาที
     function updateTimer() {
         const now = new Date();
-        const diff = now - anniversaryDate; // ผลต่างเป็นมิลลิวินาที
+        const diff = now - anniversaryDate;
 
-        // คำนวณ
         let days = Math.floor(diff / (1000 * 60 * 60 * 24));
         let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        // นำไปแสดงผล (เพิ่ม '0' ข้างหน้าถ้าเลขน้อยกว่า 10)
         timeDays.textContent = days;
         timeHours.textContent = hours < 10 ? '0' + hours : hours;
         timeMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
         timeSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
     }
-
-    // เรียกใช้ครั้งแรกทันที (จะได้ไม่เห็นเลข 0)
     updateTimer(); 
-    
-    // สั่งให้มันทำงานทุกๆ 1 วินาที (1000ms)
     setInterval(updateTimer, 1000);
 }
 
-// --- (เพิ่มใหม่) ฟังก์ชันสำหรับสร้างพลุกระดาษ (Confetti) ---
+// --- ฟังก์ชันสำหรับสร้างพลุกระดาษ (Confetti) ---
 function createConfetti() {
-    const numConfetti = 50; // จำนวนชิ้นพลุ
-    const colors = ['#d81b60', '#ff69b4', '#ff8dc7', '#ffb3d9']; // โทนสีชมพู
+    const numConfetti = 50;
+    const colors = ['#d81b60', '#ff69b4', '#ff8dc7', '#ffb3d9'];
 
     for (let i = 0; i < numConfetti; i++) {
         const confetti = document.createElement("div");
         confetti.classList.add("confetti");
 
-        // สุ่มสี
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-        // สุ่มตำแหน่งเริ่มต้นด้านบน
         confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = -Math.random() * 50 + 'px'; // เริ่มจากนอกจอด้านบน
+        confetti.style.top = -Math.random() * 50 + 'px';
 
-        // สุ่มขนาด (เล็ก/ใหญ่)
-        const size = Math.random() * 8 + 6; // 6px ถึง 14px
+        const size = Math.random() * 8 + 6;
         confetti.style.width = size + 'px';
         confetti.style.height = size + 'px';
-        
-        // สุ่มรูปร่าง (สี่เหลี่ยม/วงกลม)
         confetti.style.borderRadius = Math.random() < 0.5 ? '50%' : '2px';
 
-        // สุ่มความหน่วงอนิเมชั่นและระยะเวลา
         confetti.style.animationDelay = Math.random() * 1.5 + 's';
-        confetti.style.animationDuration = (Math.random() * 2 + 2.5) + 's'; // 2.5-4.5 วินาที
+        confetti.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
 
         confettiContainer.appendChild(confetti);
 
-        // ลบพลุออกเมื่ออนิเมชั่นจบ
         confetti.addEventListener('animationend', () => {
             confetti.remove();
         });
