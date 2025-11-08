@@ -3,14 +3,14 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #222222;
     display: flex;
-    flex-direction: column; /* <-- ตัวนี้สำคัญมากครับ! */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     transition: background-color 0.5s ease;
     padding: 20px;
-    box-sizing: border-box; /* <-- ตัวนี้ก็สำคัญ */
+    box-sizing: border-box;
 }
 
 /* --- สไตล์การ์ดหลัก (ใช้ร่วมกัน) --- */
@@ -125,7 +125,6 @@ button:hover {
 .animate-in {
     animation: fadeInSlideUp 0.7s ease-out forwards;
 }
-
 
 /* --- เอฟเฟกต์หัวใจลอย --- */
 .heart-container {
@@ -249,7 +248,7 @@ button:hover {
     color: #555;
 }
 
-/* --- (เพิ่มใหม่) สไตล์ซองจดหมาย --- */
+/* --- สไตล์ซองจดหมาย --- */
 #envelope {
     position: relative;
     width: 300px;
@@ -267,7 +266,7 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fce4ec; /* สีชมพูอ่อนมาก */
+    background-color: #fce4ec;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     z-index: 1;
@@ -277,10 +276,10 @@ button:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px; /* ครึ่งบน */
-    background-color: #ffc1d6; /* สีชมพูเข้มกว่า */
+    height: 100px;
+    background-color: #ffc1d6;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
-    z-index: 3; /* อยู่บนสุด */
+    z-index: 3;
     border-radius: 10px 10px 0 0;
 }
 .envelope-letter {
@@ -296,47 +295,11 @@ button:hover {
     font-size: 60px;
     color: #d81b60;
     padding-top: 30px;
-    z-index: 2; /* อยู่ใต้ flap */
+    z-index: 2;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* --- (เพิ่มใหม่) โค้ดสำหรับจอมือถือ --- */
-/* (อันนี้คือ @media ก้อนแรกจากไฟล์ที่คุณส่งมา) */
-@media (max-width: 600px) {
-
-    /* 1. สั่งให้กล่องเวลานับถอยหลังเรียงเป็นแนวตั้ง */
-    .time-blocks {
-        flex-direction: column; /* เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
-        gap: 10px; /* ลดระยะห่างลงเล็กน้อย */
-    }
-
-    /* 2. ทำให้การ์ดเต็มความกว้างจอมากขึ้น */
-    .card {
-        padding: 20px 25px; /* ลด padding ด้านข้าง */
-        width: 100%; /* ทำให้เต็มจอ (รวม padding ที่ body แล้ว) */
-    }
-
-    /* 3. ทำให้กล่องเวลาแต่ละอันเต็มความกว้าง */
-    .time-blocks .block {
-        min-width: unset; /* ลบความกว้างขั้นต่ำเดิม */
-        width: 100%; /* ทำให้เต็มความกว้าง */
-        box-sizing: border-box; /* สำคัญมาก! */
-        padding: 10px;
-    }
-    
-    /* 4. ลดขนาดตัวอักษรหัวข้อเวลานับ */
-    #countdown-container h3 {
-        font-size: 1.2em;
-    }
-
-    /* 5. ลดขนาดตัวเลขเวลานับ */
-    .time-blocks .block span {
-        font-size: 2em;
-    }
-}
-
-/* --- (สำคัญ) โค้ดสำหรับจอมือถือ --- */
-/* (อันนี้คือ @media ก้อนที่สอง ที่ผมแก้ไขปัญหาติดขอบจอให้ครับ) */
+/* --- (สำคัญ) โค้ดสำหรับจอมือถือ (*** ผมรวม 2 อันให้เหลืออันเดียวแล้ว ***) --- */
 @media (max-width: 600px) {
 
     /* 1. สั่งให้กล่องเวลานับถอยหลังเรียงเป็นแนวตั้ง */
@@ -345,12 +308,13 @@ button:hover {
         gap: 10px;
     }
 
-    /* 2. ทำให้การ์ดและตัวนับเต็มความกว้าง */
+    /* 2. ทำให้การ์ดและตัวนับเต็มความกว้าง (*** นี่คือจุดที่แก้ไข ***) */
     .card, #countdown-container {
-        width: 100%; /* <<< (จุดที่แก้ไข) */
+        width: 100%; /* เปลี่ยนเป็น 100% */
         max-width: 100%;
-        margin-left: 0; /* <<< (จุดที่แก้ไข) */
-        margin-right: 0; /* <<< (จุดที่แก้ไข) */
+        margin-left: 0;   /* เปลี่ยนเป็น 0 */
+        margin-right: 0;  /* เปลี่ยนเป็น 0 */
+        padding: 20px 25px; /* (ย้าย padding มาไว้ที่นี่) */
     }
 
     /* 3. ทำให้กล่องเวลาแต่ละอันเต็มความกว้าง */
@@ -376,5 +340,11 @@ button:hover {
 
     h2 {
         font-size: 1.4em;
+    }
+
+    /* 5. ปรับขนาดซองจดหมายในมือถือ */
+    #envelope {
+        width: 90%;
+        max-width: 300px;
     }
 }
