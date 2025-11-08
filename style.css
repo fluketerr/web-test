@@ -300,63 +300,81 @@ button:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* --- โค้ดสำหรับจอมือถือ (ชุดที่ 1) --- */
+/* --- (เพิ่มใหม่) โค้ดสำหรับจอมือถือ --- */
+/* (อันนี้คือ @media ก้อนแรกจากไฟล์ที่คุณส่งมา) */
 @media (max-width: 600px) {
+
+    /* 1. สั่งให้กล่องเวลานับถอยหลังเรียงเป็นแนวตั้ง */
     .time-blocks {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: column; /* เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
+        gap: 10px; /* ลดระยะห่างลงเล็กน้อย */
     }
+
+    /* 2. ทำให้การ์ดเต็มความกว้างจอมากขึ้น */
     .card {
-        padding: 20px 25px;
-        width: 100%;
+        padding: 20px 25px; /* ลด padding ด้านข้าง */
+        width: 100%; /* ทำให้เต็มจอ (รวม padding ที่ body แล้ว) */
     }
+
+    /* 3. ทำให้กล่องเวลาแต่ละอันเต็มความกว้าง */
     .time-blocks .block {
-        min-width: unset;
-        width: 100%;
-        box-sizing: border-box;
+        min-width: unset; /* ลบความกว้างขั้นต่ำเดิม */
+        width: 100%; /* ทำให้เต็มความกว้าง */
+        box-sizing: border-box; /* สำคัญมาก! */
         padding: 10px;
     }
+    
+    /* 4. ลดขนาดตัวอักษรหัวข้อเวลานับ */
     #countdown-container h3 {
         font-size: 1.2em;
     }
+
+    /* 5. ลดขนาดตัวเลขเวลานับ */
     .time-blocks .block span {
         font-size: 2em;
     }
 }
 
-/* --- โค้ดสำหรับจอมือถือ (ชุดที่ 2 - แก้ไขขอบจอ) --- */
+/* --- (สำคัญ) โค้ดสำหรับจอมือถือ --- */
+/* (อันนี้คือ @media ก้อนที่สอง ที่ผมแก้ไขปัญหาติดขอบจอให้ครับ) */
 @media (max-width: 600px) {
+
+    /* 1. สั่งให้กล่องเวลานับถอยหลังเรียงเป็นแนวตั้ง */
     .time-blocks {
         flex-direction: column;
         gap: 10px;
     }
+
+    /* 2. ทำให้การ์ดและตัวนับเต็มความกว้าง */
     .card, #countdown-container {
-        width: 100%;
+        width: 100%; /* <<< (จุดที่แก้ไข) */
         max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        margin-left: 0; /* <<< (จุดที่แก้ไข) */
+        margin-right: 0; /* <<< (จุดที่แก้ไข) */
     }
+
+    /* 3. ทำให้กล่องเวลาแต่ละอันเต็มความกว้าง */
     .time-blocks .block {
         min-width: unset;
         width: 100%;
         box-sizing: border-box;
         padding: 10px;
     }
+    
+    /* 4. ลดขนาดตัวอักษรให้พอดีมือถือ */
     #countdown-container h3 {
         font-size: 1.3em;
     }
+
     .time-blocks .block span {
         font-size: 2.2em;
     }
+
     h1 {
         font-size: 1.8em;
     }
+
     h2 {
         font-size: 1.4em;
-    }
-    /* (เพิ่ม) ปรับขนาดซองจดหมายในมือถือ */
-    #envelope {
-        width: 90%;
-        max-width: 300px; /* ไม่ให้ใหญ่เกินไป */
     }
 }
